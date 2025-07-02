@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quiz Linux Administration</title>
+  <style>
+    /* Style simple, tu peux créer un style.css séparé */
+    body { font-family: Arial, sans-serif; margin: 2rem; background: #f9f9f9; }
+    #quiz { background: white; padding: 1rem 2rem; border-radius: 5px; max-width: 600px; margin: auto; }
+    label.choice-label { display: block; margin-bottom: 0.5rem; cursor: pointer; }
+    input[type="text"] { width: 100%; padding: 0.5rem; font-size: 1rem; }
+    button { margin-top: 1rem; padding: 0.5rem 1rem; font-size: 1rem; }
+  </style>
+</head>
+<body>
+
+  <div id="quiz">
+    <h3 id="question"></h3>
+    <form id="choices"></form>
+    <button id="submit" type="button">Valider</button>
+    <p id="feedback" style="font-weight:bold; margin-top:10px;"></p>
+    <p id="score" style="font-style:italic;"></p>
+  </div>
+  <div id="result"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
