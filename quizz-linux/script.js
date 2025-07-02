@@ -163,6 +163,11 @@ const submitBtn = document.getElementById('submit');
 const feedbackEl = document.getElementById('feedback');
 const scoreEl = document.getElementById('score');
 const resultEl = document.getElementById('result');
+const form = document.getElementById('choices');
+
+form.addEventListener('submit', function(event) {
+  event.preventDefault(); // bloque la soumission du formulaire et le rechargement de la page
+});
 
 let currentQuestionIndex = 0;
 let score = 0;
