@@ -1,29 +1,28 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quiz PowerShell – Cmdlets</title>
+  <meta charset="UTF-8">
+  <title>Quiz PowerShell</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f0f4f8;
+      background-color: #f9f9f9;
       margin: 0;
       padding: 2rem;
     }
 
-    h1 {
-      text-align: center;
-      color: #1d4ed8;
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
 
-    .quiz-container {
-      max-width: 800px;
-      margin: auto;
-      background: #fff;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    h1 {
+      text-align: center;
+      color: #2c3e50;
     }
 
     .question {
@@ -36,179 +35,194 @@
 
     label {
       display: block;
-      margin-bottom: 0.5rem;
+      margin: 0.3rem 0;
+    }
+
+    .correction {
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+
+    .correct {
+      color: green;
+    }
+
+    .incorrect {
+      color: red;
     }
 
     button {
-      padding: 0.8rem 2rem;
-      background-color: #1d4ed8;
+      background-color: #3498db;
       color: white;
+      padding: 0.7rem 1.5rem;
       border: none;
       border-radius: 5px;
       font-size: 1rem;
       cursor: pointer;
+      margin-top: 1rem;
     }
 
     #result {
       margin-top: 2rem;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       font-weight: bold;
+      text-align: center;
     }
   </style>
 </head>
 <body>
-  <div class="quiz-container">
-    <h1>Quiz PowerShell : Cmdlets Fichiers, Processus et Réseau</h1>
+  <div class="container">
+    <h1>Quiz PowerShell – Cmdlets Fichiers, Processus, Réseau</h1>
     <form id="quizForm">
 
-      <!-- Questions ici -->
+      <!-- Questions -->
       <div class="question">
-        <p>1. Quelle cmdlet permet de lister les fichiers d’un répertoire ?</p>
-        <label><input type="radio" name="q1" value="a" /> Get-ChildItem</label>
-        <label><input type="radio" name="q1" value="b" /> List-Item</label>
-        <label><input type="radio" name="q1" value="c" /> Show-Files</label>
+        <p>1. Quelle cmdlet permet de créer un nouveau fichier ?</p>
+        <label><input type="radio" name="q1" value="a"> New-Item</label>
+        <label><input type="radio" name="q1" value="b"> Add-Content</label>
+        <label><input type="radio" name="q1" value="c"> Copy-Item</label>
       </div>
 
       <div class="question">
-        <p>2. Comment créer un fichier texte avec PowerShell ?</p>
-        <label><input type="radio" name="q2" value="a" /> New-Item -Type File</label>
-        <label><input type="radio" name="q2" value="b" /> New-Item -ItemType File</label>
-        <label><input type="radio" name="q2" value="c" /> Create-File</label>
+        <p>2. Quelle cmdlet permet de lire le contenu d’un fichier texte ?</p>
+        <label><input type="radio" name="q2" value="a"> Write-Output</label>
+        <label><input type="radio" name="q2" value="b"> Get-Content</label>
+        <label><input type="radio" name="q2" value="c"> Out-File</label>
       </div>
 
       <div class="question">
-        <p>3. Quelle cmdlet permet de lire le contenu d’un fichier texte ?</p>
-        <label><input type="radio" name="q3" value="a" /> Read-File</label>
-        <label><input type="radio" name="q3" value="b" /> Get-Content</label>
-        <label><input type="radio" name="q3" value="c" /> Get-Text</label>
+        <p>3. Quelle cmdlet permet de copier un fichier ?</p>
+        <label><input type="radio" name="q3" value="a"> Move-Item</label>
+        <label><input type="radio" name="q3" value="b"> Copy-Item</label>
+        <label><input type="radio" name="q3" value="c"> Rename-Item</label>
       </div>
 
       <div class="question">
-        <p>4. Quelle commande permet de renommer un fichier ?</p>
-        <label><input type="radio" name="q4" value="a" /> Rename-Item</label>
-        <label><input type="radio" name="q4" value="b" /> Rename-File</label>
-        <label><input type="radio" name="q4" value="c" /> Set-ItemName</label>
+        <p>4. Quelle cmdlet permet de supprimer un fichier ?</p>
+        <label><input type="radio" name="q4" value="a"> Remove-Item</label>
+        <label><input type="radio" name="q4" value="b"> Clear-Content</label>
+        <label><input type="radio" name="q4" value="c"> Out-Null</label>
       </div>
 
       <div class="question">
-        <p>5. Comment supprimer un fichier ?</p>
-        <label><input type="radio" name="q5" value="a" /> Delete-Item</label>
-        <label><input type="radio" name="q5" value="b" /> Remove-Item</label>
-        <label><input type="radio" name="q5" value="c" /> Clear-Item</label>
+        <p>5. Quelle cmdlet affiche la liste des processus en cours ?</p>
+        <label><input type="radio" name="q5" value="a"> Get-Service</label>
+        <label><input type="radio" name="q5" value="b"> Get-Process</label>
+        <label><input type="radio" name="q5" value="c"> Get-Item</label>
       </div>
 
       <div class="question">
-        <p>6. Quelle cmdlet démarre un nouveau processus ?</p>
-        <label><input type="radio" name="q6" value="a" /> New-Process</label>
-        <label><input type="radio" name="q6" value="b" /> Start-Process</label>
-        <label><input type="radio" name="q6" value="c" /> Begin-Process</label>
+        <p>6. Quelle cmdlet arrête un processus ?</p>
+        <label><input type="radio" name="q6" value="a"> Stop-Service</label>
+        <label><input type="radio" name="q6" value="b"> Stop-Process</label>
+        <label><input type="radio" name="q6" value="c"> Suspend-Process</label>
       </div>
 
       <div class="question">
-        <p>7. Quelle cmdlet affiche les processus en cours ?</p>
-        <label><input type="radio" name="q7" value="a" /> Get-Tasks</label>
-        <label><input type="radio" name="q7" value="b" /> Show-Processes</label>
-        <label><input type="radio" name="q7" value="c" /> Get-Process</label>
+        <p>7. Quelle cmdlet permet d’obtenir des informations sur le réseau ?</p>
+        <label><input type="radio" name="q7" value="a"> Get-NetIPConfiguration</label>
+        <label><input type="radio" name="q7" value="b"> Get-NetNeighbor</label>
+        <label><input type="radio" name="q7" value="c"> Get-NetAdapter</label>
       </div>
 
       <div class="question">
-        <p>8. Quelle cmdlet arrête un processus ?</p>
-        <label><input type="radio" name="q8" value="a" /> End-Process</label>
-        <label><input type="radio" name="q8" value="b" /> Stop-Process</label>
-        <label><input type="radio" name="q8" value="c" /> Kill-Task</label>
+        <p>8. Quelle cmdlet permet d’ajouter du texte à un fichier ?</p>
+        <label><input type="radio" name="q8" value="a"> Set-Content</label>
+        <label><input type="radio" name="q8" value="b"> Add-Content</label>
+        <label><input type="radio" name="q8" value="c"> Export-CSV</label>
       </div>
 
       <div class="question">
-        <p>9. Quelle commande permet de pinger une machine ?</p>
-        <label><input type="radio" name="q9" value="a" /> Ping-Computer</label>
-        <label><input type="radio" name="q9" value="b" /> Test-Connection</label>
-        <label><input type="radio" name="q9" value="c" /> Check-Network</label>
+        <p>9. Quelle cmdlet permet de renommer un fichier ?</p>
+        <label><input type="radio" name="q9" value="a"> Set-Name</label>
+        <label><input type="radio" name="q9" value="b"> Rename-Item</label>
+        <label><input type="radio" name="q9" value="c"> Move-Item</label>
       </div>
 
       <div class="question">
-        <p>10. Quelle cmdlet vérifie l’état d’un port réseau ?</p>
-        <label><input type="radio" name="q10" value="a" /> Check-Port</label>
-        <label><input type="radio" name="q10" value="b" /> Test-NetConnection</label>
-        <label><input type="radio" name="q10" value="c" /> Scan-Port</label>
+        <p>10. Quelle cmdlet permet d’écrire du texte dans un fichier (en remplaçant le contenu) ?</p>
+        <label><input type="radio" name="q10" value="a"> Add-Content</label>
+        <label><input type="radio" name="q10" value="b"> Set-Content</label>
+        <label><input type="radio" name="q10" value="c"> Write-Host</label>
       </div>
 
       <div class="question">
-        <p>11. Comment ajouter du contenu à un fichier existant ?</p>
-        <label><input type="radio" name="q11" value="a" /> Append-Content</label>
-        <label><input type="radio" name="q11" value="b" /> Add-Content</label>
-        <label><input type="radio" name="q11" value="c" /> Write-Text</label>
+        <p>11. Quelle cmdlet permet d’afficher les services ?</p>
+        <label><input type="radio" name="q11" value="a"> Get-Process</label>
+        <label><input type="radio" name="q11" value="b"> Get-Service</label>
+        <label><input type="radio" name="q11" value="c"> Get-Command</label>
       </div>
 
       <div class="question">
-        <p>12. Comment copier un fichier ?</p>
-        <label><input type="radio" name="q12" value="a" /> Copy-Item</label>
-        <label><input type="radio" name="q12" value="b" /> Duplicate-Item</label>
-        <label><input type="radio" name="q12" value="c" /> Clone-File</label>
+        <p>12. Quelle cmdlet permet de créer un dossier ?</p>
+        <label><input type="radio" name="q12" value="a"> New-Item</label>
+        <label><input type="radio" name="q12" value="b"> Make-Directory</label>
+        <label><input type="radio" name="q12" value="c"> Add-Item</label>
       </div>
 
       <div class="question">
-        <p>13. Quel paramètre permet une copie récursive ?</p>
-        <label><input type="radio" name="q13" value="a" /> -Recursive</label>
-        <label><input type="radio" name="q13" value="b" /> -Recurse</label>
-        <label><input type="radio" name="q13" value="c" /> -DeepCopy</label>
+        <p>13. Quelle cmdlet permet d’afficher les connexions réseau ?</p>
+        <label><input type="radio" name="q13" value="a"> Test-NetConnection</label>
+        <label><input type="radio" name="q13" value="b"> Get-NetTCPConnection</label>
+        <label><input type="radio" name="q13" value="c"> Get-NetRoute</label>
       </div>
 
       <div class="question">
-        <p>14. Comment afficher les interfaces réseau ?</p>
-        <label><input type="radio" name="q14" value="a" /> Get-NetAdapter</label>
-        <label><input type="radio" name="q14" value="b" /> Show-Interfaces</label>
-        <label><input type="radio" name="q14" value="c" /> Get-Interfaces</label>
+        <p>14. Quelle cmdlet teste la connectivité à une adresse IP ?</p>
+        <label><input type="radio" name="q14" value="a"> Test-Connection</label>
+        <label><input type="radio" name="q14" value="b"> Ping</label>
+        <label><input type="radio" name="q14" value="c"> Trace-Route</label>
       </div>
 
       <div class="question">
-        <p>15. Quelle cmdlet configure une adresse IP ?</p>
-        <label><input type="radio" name="q15" value="a" /> Set-NetIP</label>
-        <label><input type="radio" name="q15" value="b" /> New-NetIPAddress</label>
-        <label><input type="radio" name="q15" value="c" /> Add-IPConfig</label>
+        <p>15. Quelle cmdlet permet d’exporter des données au format CSV ?</p>
+        <label><input type="radio" name="q15" value="a"> Out-File</label>
+        <label><input type="radio" name="q15" value="b"> Export-CSV</label>
+        <label><input type="radio" name="q15" value="c"> Export-File</label>
       </div>
 
       <div class="question">
-        <p>16. Comment supprimer une adresse IP ?</p>
-        <label><input type="radio" name="q16" value="a" /> Delete-NetIPAddress</label>
-        <label><input type="radio" name="q16" value="b" /> Remove-NetIPAddress</label>
-        <label><input type="radio" name="q16" value="c" /> Clear-IP</label>
+        <p>16. Quelle cmdlet permet de démarrer un processus ?</p>
+        <label><input type="radio" name="q16" value="a"> Launch-Process</label>
+        <label><input type="radio" name="q16" value="b"> Start-Process</label>
+        <label><input type="radio" name="q16" value="c"> Run-App</label>
       </div>
 
       <div class="question">
-        <p>17. Quelle cmdlet redémarre un ordinateur distant ?</p>
-        <label><input type="radio" name="q17" value="a" /> Restart-Computer</label>
-        <label><input type="radio" name="q17" value="b" /> Reboot-Machine</label>
-        <label><input type="radio" name="q17" value="c" /> Start-Computer</label>
+        <p>17. Quelle cmdlet affiche la configuration IP actuelle ?</p>
+        <label><input type="radio" name="q17" value="a"> Get-NetIPConfiguration</label>
+        <label><input type="radio" name="q17" value="b"> Get-NetTCPConnection</label>
+        <label><input type="radio" name="q17" value="c"> Get-ConnectionInfo</label>
       </div>
 
       <div class="question">
-        <p>18. Quelle cmdlet permet d’attendre la fin d’un processus ?</p>
-        <label><input type="radio" name="q18" value="a" /> Wait-Process</label>
-        <label><input type="radio" name="q18" value="b" /> Sleep-Task</label>
-        <label><input type="radio" name="q18" value="c" /> Pause-Process</label>
+        <p>18. Quelle cmdlet permet de créer un alias ?</p>
+        <label><input type="radio" name="q18" value="a"> New-Alias</label>
+        <label><input type="radio" name="q18" value="b"> Set-Alias</label>
+        <label><input type="radio" name="q18" value="c"> Add-Alias</label>
       </div>
 
       <div class="question">
-        <p>19. Quelle cmdlet filtre les lignes contenant un mot ?</p>
-        <label><input type="radio" name="q19" value="a" /> Filter-String</label>
-        <label><input type="radio" name="q19" value="b" /> Select-String</label>
-        <label><input type="radio" name="q19" value="c" /> Find-Content</label>
+        <p>19. Quelle cmdlet permet de supprimer un processus ?</p>
+        <label><input type="radio" name="q19" value="a"> Kill-Process</label>
+        <label><input type="radio" name="q19" value="b"> Stop-Process</label>
+        <label><input type="radio" name="q19" value="c"> Remove-Process</label>
       </div>
 
       <div class="question">
-        <p>20. Quelle cmdlet affiche l’adresse IP locale ?</p>
-        <label><input type="radio" name="q20" value="a" /> Get-IP</label>
-        <label><input type="radio" name="q20" value="b" /> Get-NetIPAddress</label>
-        <label><input type="radio" name="q20" value="c" /> Show-IP</label>
+        <p>20. Quelle cmdlet permet d’envoyer une sortie vers un fichier ?</p>
+        <label><input type="radio" name="q20" value="a"> Send-File</label>
+        <label><input type="radio" name="q20" value="b"> Out-File</label>
+        <label><input type="radio" name="q20" value="c"> Write-Output</label>
       </div>
 
-      <button type="button" onclick="corriger()">Corriger</button>
     </form>
+    <button onclick="corriger()">Corriger</button>
     <div id="result"></div>
   </div>
 
   <script>
-    const reponses = {
+    const bonnesReponses = {
       q1: "a", q2: "b", q3: "b", q4: "a", q5: "b",
       q6: "b", q7: "c", q8: "b", q9: "b", q10: "b",
       q11: "b", q12: "a", q13: "b", q14: "a", q15: "b",
@@ -217,12 +231,34 @@
 
     function corriger() {
       let score = 0;
+
       for (let i = 1; i <= 20; i++) {
-        const q = document.querySelector(`input[name="q${i}"]:checked`);
-        if (q && q.value === reponses[`q${i}`]) score++;
+        const question = document.querySelector(`input[name="q${i}"]:checked`);
+        const div = document.querySelectorAll('.question')[i - 1];
+        const bonne = bonnesReponses[`q${i}`];
+        const ancienne = div.querySelector('.correction');
+        if (ancienne) ancienne.remove();
+
+        const feedback = document.createElement("div");
+        feedback.classList.add("correction");
+
+        if (question && question.value === bonne) {
+          score++;
+          feedback.textContent = "✅ Bonne réponse";
+          feedback.classList.add("correct");
+        } else {
+          const selection = question ? question.nextSibling.textContent.trim() : "(aucune réponse)";
+          const bonneOption = document.querySelector(`input[name="q${i}"][value="${bonne}"]`);
+          const bonneTexte = bonneOption.nextSibling.textContent.trim();
+          feedback.textContent = `❌ Mauvaise réponse (vous avez choisi : ${selection} ; bonne réponse : ${bonneTexte})`;
+          feedback.classList.add("incorrect");
+        }
+
+        div.appendChild(feedback);
       }
+
       const result = document.getElementById("result");
-      result.textContent = `✅ Vous avez obtenu ${score}/20`;
+      result.textContent = `🎯 Score final : ${score}/20`;
       result.style.color = score >= 15 ? "green" : score >= 10 ? "orange" : "red";
     }
   </script>
