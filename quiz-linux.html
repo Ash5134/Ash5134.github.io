@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Quiz Linux & Logiciel Libre</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0; padding: 2rem;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 1.5rem;
+    }
+    .question {
+      margin-bottom: 1.3rem;
+    }
+    .question p {
+      font-weight: bold;
+    }
+    label {
+      display: block;
+      margin: 0.3rem 0;
+      cursor: pointer;
+    }
+    .correct {
+      color: green;
+    }
+    .incorrect {
+      color: red;
+    }
+    button {
+      background-color: #3498db;
+      color: white;
+      padding: 0.7rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+      width: 100%;
+      max-width: 220px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+    #result {
+      margin-top: 2rem;
+      font-size: 1.3rem;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Quiz Linux & Logiciel Libre – 30 questions</h1>
+    <form id="quizForm">
+
+      <div class="question">
+        <p>1. Quelle commande affiche le contenu d'un fichier texte ?</p>
+        <label><input type="radio" name="q1" value="a"> cat</label>
+        <label><input type="radio" name="q1" value="b"> ls</label>
+        <label><input type="radio" name="q1" value="c"> pwd</label>
+      </div>
+
+      <div class="question">
+        <p>2. Quelle commande permet de changer de répertoire ?</p>
+        <label><input type="radio" name="q2" value="a"> cd</label>
+        <label><input type="radio" name="q2" value="b"> mkdir</label>
+        <label><input type="radio" name="q2" value="c"> rm</label>
+      </div>
+
+      <div class="question">
+        <p>3. Quel système d'exploitation a servi de base à Linux ?</p>
+        <label><input type="radio" name="q3" value="a"> Unix</label>
+        <label><input type="radio" name="q3" value="b"> Windows</label>
+        <label><input type="radio" name="q3" value="c"> macOS</label>
+      </div>
+
+      <div class="question">
+        <p>4. Quel projet est à l’origine des outils GNU ?</p>
+        <label><input type="radio" name="q4" value="a"> Richard Stallman</label>
+        <label><input type="radio" name="q4" value="b"> Linus Torvalds</label>
+        <label><input type="radio" name="q4" value="c"> Bill Gates</label>
+      </div>
+
+      <div class="question">
+        <p>5. Quel terme désigne un logiciel dont le code source est accessible, modifiable et redistribuable ?</p>
+        <label><input type="radio" name="q5" value="a"> Open source</label>
+        <label><input type="radio" name="q5" value="b"> Propriétaire</label>
+        <label><input type="radio" name="q5" value="c"> Shareware</label>
+      </div>
+
+      <div class="question">
+        <p>6. Quelle commande affiche la liste des fichiers et dossiers ?</p>
+        <label><input type="radio" name="q6" value="a"> ls</label>
+        <label><input type="radio" name="q6" value="b"> dir</label>
+        <label><input type="radio" name="q6" value="c"> tree</label>
+      </div>
+
+      <div class="question">
+        <p>7. Quel système est souvent appelé GNU/Linux ?</p>
+        <label><input type="radio" name="q7" value="a"> Une combinaison du noyau Linux et des outils GNU</label>
+        <label><input type="radio" name="q7" value="b"> Une version de Windows</label>
+        <label><input type="radio" name="q7" value="c"> Un système macOS modifié</label>
+      </div>
+
+      <div class="question">
+        <p>8. Quelle licence est associée au logiciel libre ?</p>
+        <label><input type="radio" name="q8" value="a"> GPL (General Public License)</label>
+        <label><input type="radio" name="q8" value="b"> EULA</label>
+        <label><input type="radio" name="q8" value="c"> BSD uniquement</label>
+      </div>
+
+      <div class="question">
+        <p>9. Quelle commande affiche les droits d’un fichier ?</p>
+        <label><input type="radio" name="q9" value="a"> ls -l</label>
+        <label><input type="radio" name="q9" value="b"> chmod</label>
+        <label><input type="radio" name="q9" value="c"> chown</label>
+      </div>
+
+      <div class="question">
+        <p>10. Quel est le but principal du projet GNU ?</p>
+        <label><input type="radio" name="q10" value="a"> Créer un système d’exploitation libre complet</label>
+        <label><input type="radio" name="q10" value="b"> Développer Windows</label>
+        <label><input type="radio" name="q10" value="c"> Vendre des logiciels</label>
+      </div>
+
+      <div class="question">
+        <p>11. Quelle commande affiche l'utilisation du disque ?</p>
+        <label><input type="radio" name="q11" value="a"> df</label>
+        <label><input type="radio" name="q11" value="b"> du</label>
+        <label><input type="radio" name="q11" value="c"> free</label>
+      </div>
+
+      <div class="question">
+        <p>12. Qui est Linus Torvalds ?</p>
+        <label><input type="radio" name="q12" value="a"> Créateur du noyau Linux</label>
+        <label><input type="radio" name="q12" value="b"> Fondateur de Microsoft</label>
+        <label><input type="radio" name="q12" value="c"> Inventeur de BSD</label>
+      </div>
+
+      <div class="question">
+        <p>13. Quelle commande permet d’éditer un fichier en mode texte dans le terminal ?</p>
+        <label><input type="radio" name="q13" value="a"> nano</label>
+        <label><input type="radio" name="q13" value="b"> cat</label>
+        <label><input type="radio" name="q13" value="c"> ls</label>
+      </div>
+
+      <div class="question">
+        <p>14. Quel système d'exploitation est à la base de macOS ?</p>
+        <label><input type="radio" name="q14" value="a"> Unix</label>
+        <label><input type="radio" name="q14" value="b"> Linux</label>
+        <label><input type="radio" name="q14" value="c"> Windows</label>
+      </div>
+
+      <div class="question">
+        <p>15. Quelle commande permet de changer le propriétaire d’un fichier ?</p>
+        <label><input type="radio" name="q15" value="a"> chown</label>
+        <label><input type="radio" name="q15" value="b"> chmod</label>
+        <label><input type="radio" name="q15" value="c"> ls -l</label>
+      </div>
+
+      <div class="question">
+        <p>16. Quelle licence est compatible avec le logiciel open source mais pas nécessairement libre ?</p>
+        <label><input type="radio" name="q16" value="a"> MIT</label>
+        <label><input type="radio" name="q16" value="b"> GPL</label>
+        <label><input type="radio" name="q16" value="c"> EULA</label>
+      </div>
+
+      <div class="question">
+        <p>17. Quelle commande affiche la mémoire vive utilisée et disponible ?</p>
+        <label><input type="radio" name="q17" value="a"> free</label>
+        <label><input type="radio" name="q17" value="b"> df</label>
+        <label><input type="radio" name="q17" value="c"> top</label>
+      </div>
+
+      <div class="question">
+        <p>18. Quel système est un dérivé direct d'Unix et très utilisé dans les serveurs ?</p>
+        <label><input type="radio" name="q18" value="a"> BSD</label>
+        <label><input type="radio" name="q18" value="b"> Windows</label>
+        <label><input type="radio" name="q18" value="c"> DOS</label>
+      </div>
+
+      <div class="question">
+        <p>19. Quelle commande affiche les dernières lignes d’un fichier ?</p>
+        <label><input type="radio" name="q19" value="a"> tail</label>
+        <label><input type="radio" name="q19" value="b"> head</label>
+        <label><input type="radio" name="q19" value="c"> grep</label>
+      </div>
+
+      <div class="question">
+        <p>20. Quelle commande permet d’exécuter une commande en tant que superutilisateur ?</p>
+        <label><input type="radio" name="q20" value="a"> sudo</label>
+        <label><input type="radio" name="q20" value="b"> su</label>
+        <label><input type="radio" name="q20" value="c"> chmod</label>
+      </div>
+
+      <!-- Questions Linux + paquetages + noyau + distributions -->
+
+      <div class="question">
+        <p>21. Quelle commande installe un paquet sur une distribution Debian/Ubuntu ?</p>
+        <label><input type="radio" name="q21" value="a"> apt install</label>
+        <label><input type="radio" name="q21" value="b"> yum install</label>
+        <label><input type="radio" name="q21" value="c"> pacman -S</label>
+      </div>
+
+      <div class="question">
+        <p>22. Quel fichier contient la liste des utilisateurs sous Linux ?</p>
+        <label><input type="radio" name="q22" value="a"> /etc/passwd</label>
+        <label><input type="radio" name="q22" value="b"> /etc/shadow</label>
+        <label><input type="radio" name="q22" value="c"> /etc/group</label>
+      </div>
+
+      <div class="question">
+        <p>23. Quel est le rôle principal du noyau Linux ?</p>
+        <label><input type="radio" name="q23" value="a"> Gérer les ressources matérielles et logiciels</label>
+        <label><input type="radio" name="q23" value="b"> Fournir une interface graphique</label>
+        <label><input type="radio" name="q23" value="c"> Exécuter uniquement les applications</label>
+      </div>
+
+      <div class="question">
+        <p>24. Quelle commande affiche les processus en cours ?</p>
+        <label><input type="radio" name="q24" value="a"> ps</label>
+        <label><input type="radio" name="q24" value="b"> ls</label>
+        <label><input type="radio" name="q24" value="c"> netstat</label>
+      </div>
+
+      <div class="question">
+        <p>25. Quel dossier contient les fichiers de configuration du système sous Linux ?</p>
+        <label><input type="radio" name="q25" value="a"> /etc</label>
+        <label><input type="radio" name="q25" value="b"> /usr</label>
+        <label><input type="radio" name="q25" value="c"> /var</label>
+      </div>
+
+      <div class="question">
+        <p>26. Quelle commande modifie les permissions d’un fichier ?</p>
+        <label><input type="radio" name="q26" value="a"> chmod</label>
+        <label><input type="radio" name="q26" value="b"> chown</label>
+        <label><input type="radio" name="q26" value="c"> ls -l</label>
+      </div>
+
+      <div class="question">
+        <p>27. Quelle commande permet de redémarrer le système sous Linux ?</p>
+        <label><input type="radio" name="q27" value="a"> reboot</label>
+        <label><input type="radio" name="q27" value="b"> shutdown -h now</label>
+        <label><input type="radio" name="q27" value="c"> halt</label>
+      </div>
+
+      <div class="question">
+        <p>28. Quel est le rôle du gestionnaire de paquets ?</p>
+        <label><input type="radio" name="q28" value="a"> Installer, mettre à jour et supprimer des logiciels</label>
+        <label><input type="radio" name="q28" value="b"> Gérer les utilisateurs</label>
+        <label><input type="radio" name="q28" value="c"> Modifier le noyau</label>
+      </div>
+
+      <div class="question">
+        <p>29. Quelle commande affiche l’adresse IP configurée sur une interface réseau ?</p>
+        <label><input type="radio" name="q29" value="a"> ip addr show</label>
+        <label><input type="radio" name="q29" value="b"> ifconfig</label>
+        <label><input type="radio" name="q29" value="c"> netstat -r</label>
+      </div>
+
+      <div class="question">
+        <p>30. Quel dossier contient les données utilisateurs sous Linux ?</p>
+        <label><input type="radio" name="q30" value="a"> /home</label>
+        <label><input type="radio" name="q30" value="b"> /root</label>
+        <label><input type="radio" name="q30" value="c"> /usr</label>
+      </div>
+
+      <button type="button" onclick="submitQuiz()">Valider le quiz</button>
+    </form>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const answers = {
+      q1: 'a',
+      q2: 'a',
+      q3: 'a',
+      q4: 'a',
+      q5: 'a',
+      q6: 'a',
+      q7: 'a',
+      q8: 'a',
+      q9: 'a',
+      q10: 'a',
+      q11: 'a',
+      q12: 'a',
+      q13: 'a',
+      q14: 'a',
+      q15: 'a',
+      q16: 'a',
+      q17: 'a',
+      q18: 'a',
+      q19: 'a',
+      q20: 'a',
+      q21: 'a',
+      q22: 'a',
+      q23: 'a',
+      q24: 'a',
+      q25: 'a',
+      q26: 'a',
+      q27: 'a',
+      q28: 'a',
+      q29: 'a',
+      q30: 'a'
+    };
+
+    function submitQuiz() {
+      const form = document.getElementById('quizForm');
+      let score = 0;
+      let total = Object.keys(answers).length;
+
+      for (let i = 1; i <= total; i++) {
+        const qName = 'q' + i;
+        const selected = form[qName].value;
+        const questionDiv = form[qName].closest('.question');
+
+        // reset colors
+        questionDiv.querySelectorAll('label').forEach(label => {
+          label.style.color = '';
+        });
+
+        // color answers
+        if (selected === answers[qName]) {
+          score++;
+          // color green correct answer label
+          questionDiv.querySelector('label input[value="' + selected + '"]').parentNode.style.color = 'green';
+        } else {
+          // color red wrong selected label
+          if (selected) {
+            questionDiv.querySelector('label input[value="' + selected + '"]').parentNode.style.color = 'red';
+          }
+          // color green correct label
+          questionDiv.querySelector('label input[value="' + answers[qName] + '"]').parentNode.style.color = 'green';
+        }
+      }
+
+      document.getElementById('result').textContent = "Votre score est " + score + " / " + total;
+    }
+  </script>
+</body>
+</html>
