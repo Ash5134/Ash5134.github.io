@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Quiz PowerShell Script</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2em;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    form {
+      max-width: 900px;
+      margin: auto;
+    }
+    fieldset {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 1em;
+      margin-bottom: 1.5em;
+      background-color: #fff;
+    }
+    legend {
+      font-weight: bold;
+      color: #2c3e50;
+    }
+    label {
+      display: block;
+      margin: 0.5em 0;
+      cursor: pointer;
+    }
+    button {
+      display: block;
+      margin: 2em auto;
+      padding: 0.7em 1.5em;
+      background-color: #2c3e50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    #resultat {
+      text-align: center;
+      font-size: 1.2em;
+      font-weight: bold;
+      margin-top: 2em;
+    }
+    .correct {
+      background-color: #d4edda;
+    }
+    .incorrect {
+      background-color: #f8d7da;
+    }
+    .explanation {
+      margin-top: 0.8em;
+      font-style: italic;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1>Quiz PowerShell complet</h1>
+  <form id="quiz"></form>
+  <button id="submitBtn">Valider</button>
+  <div id="resultat"></div>
+
+  <script>
+    const quizData = [
+      {
+        question: "Que signifie l'acronyme AD dans le contexte Windows Server ?",
+        options: ["Active Domain", "Active Directory", "Admin Domain", "Advanced Directory"],
+        answer: 1,
+        explanation: "AD signifie Active Directory, un service d'annuaire Microsoft pour la gestion des ressources réseau."
+      },
+      {
+        question: "Quelle est la première question que je me pose avant d'automatiser une tâche ?",
+        options: ["Est-ce que la tâche est importante ?", "Y a-t-il un réel besoin d'automatiser cette tâche ?", "Est-ce que j'aime PowerShell ?", "Est-ce que je peux la faire manuellement ?"],
+        answer: 1,
+        explanation: "La question clé est : y a-t-il un réel besoin d'automatiser la tâche ?"
+      },
+      {
+        question: "Quelle cmdlet PowerShell est utilisée pour créer un nouvel utilisateur Active Directory ?",
+        options: ["Get-ADUser", "New-ADUser", "Set-ADUser", "Remove-ADUser"],
+        answer: 1,
+        explanation: "`New-ADUser` sert à créer un nouvel utilisateur dans Active Directory."
+      },
+      {
+        question: "Une IP statique est recommandée pour :",
+        options: ["Postes clients", "Machines critiques comme les serveurs", "Appareils mobiles", "Machines temporaires"],
+        answer: 1,
+        explanation: "Les machines critiques, telles que les serveurs ou contrôleurs de domaine, utilisent une IP statique."
+      },
+      {
+        question: "Dans PowerShell, comment commence une variable ?",
+        options: ["#", "$", "%", "&"],
+        answer: 1,
+        explanation: "Les variables PowerShell commencent toujours par le symbole $."
+      },
+      {
+        question: "Que permet la cmdlet `Write-Host` ?",
+        options: ["Afficher un message à l’écran", "Lire une entrée utilisateur", "Créer une variable", "Arrêter un script"],
+        answer: 0,
+        explanation: "`Write-Host` affiche un message ou une variable à l’écran."
+      },
+      {
+        question: "Qu’est-ce qu’un pipeline (`|`) en PowerShell ?",
+        options: ["Une chaîne de commandes enchaînées", "Un type de variable", "Une boucle infinie", "Un cmdlet spécial"],
+        answer: 0,
+        explanation: "Le pipeline permet de chaîner la sortie d’une commande à l’entrée d’une autre."
+      },
+      {
+        question: "Quelle cmdlet supprime un groupe Active Directory ?",
+        options: ["Remove-ADGroup", "Delete-ADGroup", "Clear-ADGroup", "Erase-ADGroup"],
+        answer: 0,
+        explanation: "`Remove-ADGroup` supprime un groupe AD."
+      },
+      {
+        question: "Quelle est la cmdlet pour créer une unité d'organisation (OU) ?",
+        options: ["New-ADOrganizationalUnit", "Set-ADOU", "Add-ADOU", "New-OU"],
+        answer: 0,
+        explanation: "`New-ADOrganizationalUnit` crée une OU."
+      },
+      {
+        question: "Pour quelle raison automate-t-on une tâche ?",
+        options: ["Tâches ponctuelles", "Tâches répétitives ou critiques", "Tâches complexes à faire manuellement", "Toutes les tâches"],
+        answer: 1,
+        explanation: "Les tâches répétitives, longues ou critiques sont idéales pour l’automatisation."
+      },
+      {
+        question: "Quelle commande affiche le contenu d'un fichier dans PowerShell ?",
+        options: ["Get-Content", "Show-File", "Read-File", "Open-File"],
+        answer: 0,
+        explanation: "`Get-Content` affiche le contenu d'un fichier."
+      },
+      {
+        question: "Quelle cmdlet permet de stopper un processus ?",
+        options: ["Stop-Process", "End-Process", "Kill-Task", "Terminate-Process"],
+        answer: 0,
+        explanation: "`Stop-Process` arrête un processus donné."
+      },
+      {
+        question: "Comment écrire un commentaire dans un script PowerShell ?",
+        options: ["// Ceci est un commentaire", "# Ceci est un commentaire", "/* Ceci est un commentaire */", "<!-- Ceci est un commentaire -->"],
+        answer: 1,
+        explanation: "Le caractère # est utilisé pour les commentaires dans PowerShell."
+      },
+      {
+        question: "Quelle cmdlet permet de récupérer les services en cours ?",
+        options: ["Get-Service", "Show-Service", "List-Service", "Service-Status"],
+        answer: 0,
+        explanation: "`Get-Service` liste les services sur la machine."
+      },
+      {
+        question: "Comment afficher l'aide détaillée d'une cmdlet ?",
+        options: ["Help <cmdlet> -Detailed", "Get-Help <cmdlet> -Detailed", "Show-Help <cmdlet>", "Help <cmdlet> --full"],
+        answer: 1,
+        explanation: "`Get-Help <cmdlet> -Detailed` affiche l'aide détaillée."
+      },
+      {
+        question: "Que fait la cmdlet `Set-ExecutionPolicy` ?",
+        options: ["Change la politique d'exécution des scripts", "Exécute un script", "Affiche les politiques de sécurité", "Stoppe un script"],
+        answer: 0,
+        explanation: "`Set-ExecutionPolicy` modifie les règles d'exécution des scripts PowerShell."
+      },
+      {
+        question: "Quelle cmdlet permet de renommer un fichier ?",
+        options: ["Rename-Item", "Move-Item", "Set-Name", "Change-Name"],
+        answer: 0,
+        explanation: "`Rename-Item` permet de renommer un fichier ou dossier."
+      },
+      {
+        question: "Quelle cmdlet permet de copier un fichier ?",
+        options: ["Copy-Item", "Move-Item", "Duplicate-File", "Clone-Item"],
+        answer: 0,
+        explanation: "`Copy-Item` copie un fichier ou un dossier."
+      },
+      {
+        question: "Quelle cmdlet permet de créer un nouveau dossier ?",
+        options: ["New-Item -Type Directory", "Make-Directory", "Create-Folder", "New-Folder"],
+        answer: 0,
+        explanation: "`New-Item -Type Directory` crée un nouveau dossier."
+      },
+      {
+        question: "Comment lister les processus en cours ?",
+        options: ["Get-Process", "Show-Process", "List-Tasks", "Task-Manager"],
+        answer: 0,
+        explanation: "`Get-Process` liste les processus actifs."
+      },
+      {
+        question: "Que permet la cmdlet `Import-Module` ?",
+        options: ["Charger un module PowerShell", "Exporter un module", "Lister les modules", "Supprimer un module"],
+        answer: 0,
+        explanation: "`Import-Module` charge un module pour l'utiliser dans la session."
+      },
+      {
+        question: "Comment afficher les variables d’environnement ?",
+        options: ["Get-Env", "Get-ChildItem Env:", "Show-Variables", "Env-List"],
+        answer: 1,
+        explanation: "`Get-ChildItem Env:` liste les variables d’environnement."
+      },
+      {
+        question: "Quelle cmdlet permet d'exécuter un script PowerShell ?",
+        options: [".\script.ps1", "Run-Script script.ps1", "Execute-Script script.ps1", "Invoke-Script script.ps1"],
+        answer: 0,
+        explanation: "On exécute un script PowerShell en tapant son chemin avec .\\ devant."
+      },
+      {
+        question: "Comment afficher la version de PowerShell ?",
+        options: ["$PSVersionTable.PSVersion", "Get-Version", "Show-PSVersion", "Version-Check"],
+        answer: 0,
+        explanation: "La variable $PSVersionTable.PSVersion donne la version de PowerShell."
+      },
+      {
+        question: "Quelle cmdlet permet de redémarrer un service ?",
+        options: ["Restart-Service", "Reset-Service", "Reload-Service", "Refresh-Service"],
+        answer: 0,
+        explanation: "`Restart-Service` redémarre un service."
+      },
+      {
+        question: "Quelle est la cmdlet pour supprimer un fichier ?",
+        options: ["Remove-Item", "Delete-File", "Erase-Item", "Clear-File"],
+        answer: 0,
+        explanation: "`Remove-Item` supprime un fichier ou un dossier."
+      },
+      {
+        question: "Comment créer un alias pour une cmdlet ?",
+        options: ["New-Alias", "Set-Alias", "Alias-Create", "Add-Alias"],
+        answer: 1,
+        explanation: "`Set-Alias` crée un alias pour une cmdlet."
+      },
+      {
+        question: "Que fait la cmdlet `Get-EventLog` ?",
+        options: ["Affiche les journaux d'événements", "Crée un journal", "Supprime un journal", "Configure un journal"],
+        answer: 0,
+        explanation: "`Get-EventLog` affiche les journaux d'événements système."
+      },
+      {
+        question: "Quel est le rôle de la cmdlet `Out-File` ?",
+        options: ["Rediriger la sortie vers un fichier", "Ouvrir un fichier", "Créer un fichier", "Lire un fichier"],
+        answer: 0,
+        explanation: "`Out-File` permet de rediriger la sortie d'une commande vers un fichier."
+      },
+      {
+        question: "Quelle cmdlet sert à arrêter la session PowerShell ?",
+        options: ["Exit", "Stop-Session", "End-PowerShell", "Quit"],
+        answer: 0,
+        explanation: "`Exit` ferme la session PowerShell."
+      }
+    ];
+
+    const quizContainer = document.getElementById('quiz');
+    const submitBtn = document.getElementById('submitBtn');
+    const resultatDiv = document.getElementById('resultat');
+
+    function generateQuiz() {
+      quizData.forEach((q, i) => {
+        const fieldset = document.createElement('fieldset');
+        const legend = document.createElement('legend');
+        legend.textContent = `${i + 1}. ${q.question}`;
+        fieldset.appendChild(legend);
+
+        q.options.forEach((option, index) => {
+          const label = document.createElement('label');
+          const input = document.createElement('input');
+          input.type = 'radio';
+          input.name = `q${i}`;
+          input.value = index;
+          label.appendChild(input);
+          label.appendChild(document.createTextNode(' ' + option));
+          fieldset.appendChild(label);
+        });
+
+        quizContainer.appendChild(fieldset);
+      });
+    }
+
+    function checkAnswers() {
+      let score = 0;
+      resultatDiv.innerHTML = '';
+      const fieldsets = quizContainer.querySelectorAll('fieldset');
+
+      fieldsets.forEach((fieldset, i) => {
+        const inputs = fieldset.querySelectorAll('input[type="radio"]');
+        let userAnswer = null;
+        inputs.forEach(input => {
+          if (input.checked) userAnswer = parseInt(input.value);
+        });
+
+        if (userAnswer === quizData[i].answer) {
+          score++;
+          fieldset.classList.add('correct');
+          fieldset.classList.remove('incorrect');
+        } else {
+          fieldset.classList.add('incorrect');
+          fieldset.classList.remove('correct');
+        }
+
+        let explanation = fieldset.querySelector('.explanation');
+        if (!explanation) {
+          explanation = document.createElement('p');
+          explanation.className = 'explanation';
+          fieldset.appendChild(explanation);
+        }
+        explanation.textContent = quizData[i].explanation;
+      });
+
+      resultatDiv.textContent = `Votre score est ${score} / ${quizData.length}`;
+    }
+
+    generateQuiz();
+
+    submitBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      checkAnswers();
+    });
+  </script>
+</body>
+</html>
